@@ -39,9 +39,9 @@
         font-size: 0.6em;
         background: black;
         width: 50vh;
-        margin: 0 auto; 
         padding-left: 30px;
-        margin-top: 30px;
+        margin-top: -300px;
+        margin-left: 1400px;
       }
 
       p {
@@ -105,6 +105,8 @@
         .middleContainer {
           margin-top: 100px;
           height: 230px;
+          margin-left: 20px;
+          width: 90%;
         }
       }
     </style>
@@ -116,7 +118,7 @@
       <button
         class="buttons"
         id="buttonQ"
-        onmousedown="buttonSound.play()"
+        onmousedown="blockRotate.play()"
         onclick="playerRotate(-1)"
       >
         Q
@@ -124,7 +126,7 @@
       <button
         class="buttons"
         id="buttonW"
-        onmousedown="buttonSound.play()"
+        onmousedown="blockRotate.play()"
         onclick="playerRotate(1)"
       >
         W
@@ -132,7 +134,7 @@
       <button
         class="buttons"
         id="buttonL"
-        onmousedown="buttonSound.play()"
+        onmousedown="blockRotate.play()"
         onclick="playerMove(-1)"
       >
         <<
@@ -140,7 +142,7 @@
       <button
         class="buttons"
         id="buttonD"
-        onmousedown="buttonSound.play()"
+        onmousedown="blockRotate.play()"
         onclick="playerDrop()"
       >
         V
@@ -148,8 +150,9 @@
       <button
         class="buttons"
         id="buttonR"
-        onmousedown="buttonSound.play()"
+        onmousedown="blockRotate.play()"
         onclick="playerMove(1)"
+        onkeypress="playerDrop()"
       >
         >>
       </button>
@@ -161,12 +164,18 @@
         <p>For rotate: Q and W</p>
         <p>and</p>
         <p>Arrow Buttons (Left, Right and Down)</p>
+        <audio>
+          <iframe id="bgSound" width="0" height="0" src="tetris-theme.mp3" frameborder="0" allowfullscreen></iframe>
+        </audio>
       </div>
     </div>
     <script src="tetris.js"></script>
     <script>
-      var buttonSound = new Audio();
-      buttonSound.src = "buttonclick.mp3";
+      var tetrisTheme = new Audio();
+      tetrisTheme.src = "tetris-theme.mp3";
+
+      var blockRotate = new Audio();
+      blockRotate.src = "block-rotate.mp3";
     </script>
   </body>
 </html>

@@ -1,6 +1,9 @@
 const canvas = document.getElementById("tetris");
 const context = canvas.getContext("2d");
 
+var lineRemoval = new Audio();
+lineRemoval.src = "line-removal.mp3";
+
 context.scale(20, 20);
 
 function arenaSweep() {
@@ -16,6 +19,7 @@ function arenaSweep() {
         arena.unshift(row);
         ++y;
 
+        lineRemoval.play();
         player.score += rowCount * 10;
         rowCount *= 1.5;
     }
@@ -180,7 +184,7 @@ function rotate(matrix, dir) {
 }
 
 let dropCounter = 0;
-let dropInterval = 1000;
+let dropInterval = 400;
 
 let lastTime = 0;
 function update(time = 0) {
@@ -226,7 +230,9 @@ document.addEventListener("keydown", (event) => {
   } else if (event.keyCode === 39) {
     playerMove(1);
   } else if (event.keyCode === 40) {
+    dropInterval = 100;
     playerDrop();
+    dropInterval = 400;
   } else if (event.keyCode === 81) {
     playerRotate(-1);
   } else if (event.keyCode === 87) {
