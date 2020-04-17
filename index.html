@@ -38,14 +38,10 @@
         border-radius: 0.2em;
         font-size: 0.6em;
         background: black;
-        display: flex;
-        align-items: center;
-        margin-top: -800px;
-        margin-left: 1250px;
-        width: 400px;
-        height: 200px;
-        text-align: justify;
+        width: 50vh;
+        margin: 0 auto; 
         padding-left: 30px;
+        margin-top: 30px;
       }
 
       p {
@@ -53,11 +49,12 @@
       }
 
       .button {
-        border: solid 0.2em white;
+        border: solid 0.1em blue;
         border-radius: 0.2em;
         background-color: black;
         width: 50vh;
-        margin: 570px auto;
+        margin: 0 auto;   
+        margin-top: -30px;    
       }
       .buttons {
         font-size: 30px;
@@ -66,6 +63,7 @@
         border: 3px solid white;
         border-radius: 10px;
         margin-left: 5px;
+        width: 15%;
       }
 
       @media (max-width: 770px) {
@@ -86,22 +84,27 @@
           border-radius: 0.2em;
           background-color: black;
           width: 90%;
-          height: 70px;
+          height: 55px;
           float: left;
           align-items: center;
-          margin-top: 580px;
+          margin-top: -13px;
           margin-left: 20px;
           text-align: justify;
           justify-content: center;
+          padding-top: 5px;
         }
         .buttons {
-          font-size: 25px;
+          font-size: 20px;
           background-color: magenta;
           color: black;
           border: 3px solid white;
           border-radius: 10px;
           float: left;
-          margin-left: 12px;
+          margin-left: 14px;
+        }
+        .middleContainer {
+          margin-top: 100px;
+          height: 230px;
         }
       }
     </style>
@@ -109,15 +112,6 @@
   <body>
     <div id="score"></div>
     <canvas id="tetris" width="240" height="400"></canvas>
-
-    <div class="middleContainer">
-      <div>
-        How to play?
-        <p>For rotate: Q and W</p>
-        <p>and</p>
-        <p>Arrow Buttons (Left, Right and Down)</p>
-      </div>
-    </div>
     <div class="button">
       <button
         class="buttons"
@@ -160,6 +154,14 @@
         >>
       </button>
       
+    </div>
+    <div class="middleContainer">
+      <div>
+        How to play?
+        <p>For rotate: Q and W</p>
+        <p>and</p>
+        <p>Arrow Buttons (Left, Right and Down)</p>
+      </div>
     </div>
     <script src="tetris.js"></script>
     <script>
