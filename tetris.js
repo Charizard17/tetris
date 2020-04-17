@@ -232,6 +232,7 @@ document.addEventListener("keydown", (event) => {
   } else if (event.keyCode === 87) {
     playerRotate(1);
   }
+  buttonSound.play();
 });
 
 function startGame() {
