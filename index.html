@@ -1,181 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <link rel="icon" href="tetrisicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="icon" href="../images/tetrisicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tetris</title>
     <style>
-      body {
-        background: #202028;
-        color: #fff;
-        font-family: sans-serif;
-        font-size: 3em;
-        text-align: center;
-        background-image: url("./tetrisbackground.jpeg");
-        max-width: 100%;
-        height: auto;
-      }
-      canvas {
-        border: solid 0.2em #fff;
-        border-bottom-left-radius: 0.2em;
-        border-bottom-right-radius: 0.2em;
-        height: 85vh;
-        width: 50vh;
-      }
-      #score {
+      * {
         background-color: black;
-        border-top: solid 0.2em white;
-        border-right: solid 0.2em white;
-        border-left: solid 0.2em white;
-        width: 50vh;
+        align-items: center;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .marginDiv {
+          margin-top: 250px;
+      }
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin: 0 auto;
-        border-top-right-radius: 30px;
-        border-top-left-radius: 30px;
+        vertical-align: super;
       }
-      .middleContainer {
-        border: solid 0.2em white;
-        border-radius: 0.2em;
-        font-size: 0.6em;
-        background: black;
-        width: 50vh;
-        padding-left: 30px;
-        margin-top: -300px;
-        margin-left: 1400px;
+      button {
+        width: 300px;
+        height: 80px;
+        background-color: gray;
+        margin-top: 50px;
       }
-
-      p {
-        font-size: 0.7em;
-      }
-
-      .button {
-        border: solid 0.1em blue;
-        border-radius: 0.2em;
-        background-color: black;
-        width: 50vh;
-        margin: 0 auto;   
-        margin-top: -30px;    
-      }
-      .buttons {
-        font-size: 30px;
-        background-color: magenta;
-        color: black;
-        border: 3px solid white;
-        border-radius: 10px;
-        margin-left: 5px;
-        width: 15%;
-      }
-
-      @media (max-width: 770px) {
-        canvas {
-          width: 90%;
-          height: auto;
-          border: solid 0.1em white;
-        }
-
-        #score {
-          width: 90%;
-          height: 40px;
-          font-size: 25px;
-          border: solid 0.1em white;
-        }
-        .button {
-          border: solid 0.1em white;
-          border-radius: 0.2em;
-          background-color: black;
-          width: 90%;
-          height: 55px;
-          float: left;
-          align-items: center;
-          margin-top: -13px;
-          margin-left: 20px;
-          text-align: justify;
-          justify-content: center;
-          padding-top: 5px;
-        }
-        .buttons {
-          font-size: 20px;
-          background-color: magenta;
-          color: black;
-          border: 3px solid white;
-          border-radius: 10px;
-          float: left;
-          margin-left: 14px;
-        }
-        .middleContainer {
-          margin-top: 100px;
-          height: 230px;
-          margin-left: 20px;
-          width: 90%;
-        }
+      a {
+        font-size: 45px;
+        text-decoration: none;
+        background-color: inherit;
+        color: lime;
       }
     </style>
   </head>
   <body>
-    <div id="score"></div>
-    <canvas id="tetris" width="240" height="400"></canvas>
-    <div class="button">
-      <button
-        class="buttons"
-        id="buttonQ"
-        onmousedown="blockRotate.play()"
-        onclick="playerRotate(-1)"
-      >
-        Q
+      <div class="marginDiv">.</div>
+    <div>
+      <button>
+        <a href="./singleplayer/singleplayer.html">Singleplayer</a>
       </button>
-      <button
-        class="buttons"
-        id="buttonW"
-        onmousedown="blockRotate.play()"
-        onclick="playerRotate(1)"
-      >
-        W
-      </button>
-      <button
-        class="buttons"
-        id="buttonL"
-        onmousedown="blockRotate.play()"
-        onclick="playerMove(-1)"
-      >
-        <<
-      </button>
-      <button
-        class="buttons"
-        id="buttonD"
-        onmousedown="blockRotate.play()"
-        onclick="playerDrop()"
-      >
-        V
-      </button>
-      <button
-        class="buttons"
-        id="buttonR"
-        onmousedown="blockRotate.play()"
-        onclick="playerMove(1)"
-        onkeypress="playerDrop()"
-      >
-        >>
-      </button>
-      
     </div>
-    <div class="middleContainer">
-      <div>
-        How to play?
-        <p>For rotate: Q and W</p>
-        <p>and</p>
-        <p>Arrow Buttons (Left, Right and Down)</p>
-        <audio>
-          <iframe id="bgSound" width="0" height="0" src="tetris-theme.mp3" frameborder="0" allowfullscreen></iframe>
-        </audio>
-      </div>
+    <div>
+      <br />
+      <button><a href="./multiplayer/multiplayer.html">Multiplayer</a></button>
     </div>
-    <script src="tetris.js"></script>
-    <script>
-      var tetrisTheme = new Audio();
-      tetrisTheme.src = "tetris-theme.mp3";
-
-      var blockRotate = new Audio();
-      blockRotate.src = "block-rotate.mp3";
-    </script>
   </body>
 </html>

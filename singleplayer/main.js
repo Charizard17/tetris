@@ -1,28 +1,34 @@
 const canvas = document.getElementById("tetris");
 const context = canvas.getContext("2d");
 
+var tetrisTheme = new Audio();
+tetrisTheme.src = "../sounds/tetris-theme.mp3";
+
+var blockRotate = new Audio();
+blockRotate.src = "../sounds/block-rotate.mp3";
+
 var lineRemoval = new Audio();
-lineRemoval.src = "line-removal.mp3";
+lineRemoval.src = "../sounds/line-removal.mp3";
 
 context.scale(20, 20);
 
 function arenaSweep() {
-    let rowCount = 1;
-    outer: for (let y = arena.length - 1; y > 0; --y) {
-        for (let x = 0; x < arena[y].length; ++x) {
-            if (arena[y][x] === 0) {
-                continue outer;
-            }
-        }
-
-        const row = arena.splice(y, 1)[0].fill(0);
-        arena.unshift(row);
-        ++y;
-
-        lineRemoval.play();
-        player.score += rowCount * 10;
-        rowCount *= 1.5;
+  let rowCount = 1;
+  outer: for (let y = arena.length - 1; y > 0; --y) {
+    for (let x = 0; x < arena[y].length; ++x) {
+      if (arena[y][x] === 0) {
+        continue outer;
+      }
     }
+
+    const row = arena.splice(y, 1)[0].fill(0);
+    arena.unshift(row);
+    ++y;
+
+    lineRemoval.play();
+    player.score += rowCount * 10;
+    rowCount *= 1.5;
+  }
 }
 
 function collide(arena, player) {
@@ -35,7 +41,7 @@ function collide(arena, player) {
     }
   }
   return false;
-};
+}
 
 function createMatrix(w, h) {
   const matrix = [];
@@ -52,43 +58,43 @@ function createPiece(type) {
       [1, 1, 1],
       [0, 1, 0],
     ];
-  } else if (type === 'O') {
-      return [
-        [2, 2],
-        [2, 2],
-      ];
-  } else if (type === 'L') {
+  } else if (type === "O") {
     return [
-        [0, 3, 0],
-        [0, 3, 0],
-        [0, 3, 3],
+      [2, 2],
+      [2, 2],
     ];
-} else if (type === 'J') {
+  } else if (type === "L") {
     return [
-        [0, 4, 0],
-        [0, 4, 0],
-        [4, 4, 0],
+      [0, 3, 0],
+      [0, 3, 0],
+      [0, 3, 3],
     ];
-} else if (type === 'I') {
+  } else if (type === "J") {
     return [
-        [0, 5, 0, 0],
-        [0, 5, 0, 0],
-        [0, 5, 0, 0],
-        [0, 5, 0, 0],
+      [0, 4, 0],
+      [0, 4, 0],
+      [4, 4, 0],
     ];
-} else if (type === 'S') {
+  } else if (type === "I") {
     return [
-        [0, 6, 6],
-        [6, 6, 0],
-        [0, 0, 0],
+      [0, 5, 0, 0],
+      [0, 5, 0, 0],
+      [0, 5, 0, 0],
+      [0, 5, 0, 0],
     ];
-} else if (type === 'Z') {
+  } else if (type === "S") {
     return [
-        [7, 7, 0],
-        [0, 7, 7],
-        [0, 0, 0],
+      [0, 6, 6],
+      [6, 6, 0],
+      [0, 0, 0],
     ];
-}
+  } else if (type === "Z") {
+    return [
+      [7, 7, 0],
+      [0, 7, 7],
+      [0, 0, 0],
+    ];
+  }
 }
 
 function draw() {
@@ -103,7 +109,7 @@ function drawMatrix(matrix, offset) {
   matrix.forEach((row, y) => {
     row.forEach((value, x) => {
       if (value !== 0) {
-        context.fillStyle =  colors[value];
+        context.fillStyle = colors[value];
         context.border = "red";
         context.fillRect(x + offset.x, y + offset.y, 1, 1);
       }
@@ -141,18 +147,17 @@ function playerMove(dir) {
 }
 
 function playerReset() {
-    const pieces = 'ILJOTSZ';
-    player.matrix = createPiece(pieces[pieces.length * Math.random() | 0 ]);
-    player.pos.y = 0;
-    player.pos.x = (arena[0].length / 2 | 0) -
-                   (player.matrix[0].length / 2 | 0);
-    if (collide(arena, player)) {
-        arena.forEach(row => row.fill(0));
-        player.score = 0;
-        updateScore();
-    }
+  const pieces = "ILJOTSZ";
+  player.matrix = createPiece(pieces[(pieces.length * Math.random()) | 0]);
+  player.pos.y = 0;
+  player.pos.x =
+    ((arena[0].length / 2) | 0) - ((player.matrix[0].length / 2) | 0);
+  if (collide(arena, player)) {
+    arena.forEach((row) => row.fill(0));
+    player.score = 0;
+    updateScore();
+  }
 }
-
 
 function playerRotate(dir) {
   const pos = player.pos.x;
@@ -200,19 +205,19 @@ function update(time = 0) {
 }
 
 function updateScore() {
-    document.getElementById('score').innerText = player.score;
+  document.getElementById("score").innerText = player.score;
 }
 
 const colors = [
-    null,
-    'purple',
-    'yellow',
-    'orange',
-    'blue',
-    'aqua',
-    'green',
-    'red',
-]
+  null,
+  "purple",
+  "yellow",
+  "orange",
+  "blue",
+  "aqua",
+  "green",
+  "red",
+];
 
 const arena = createMatrix(12, 20);
 console.log(arena);
@@ -238,13 +243,15 @@ document.addEventListener("keydown", (event) => {
   } else if (event.keyCode === 87) {
     playerRotate(1);
   }
-  buttonSound.play();
+  blockRotate.play();
+  tetrisTheme.play();
 });
 
 function startGame() {
-    playerReset();
-    updateScore();
-    update();
+    
+  playerReset();
+  updateScore();
+  update();
 }
 
 startGame();
